@@ -1,20 +1,21 @@
 #include "main.h"
-
+#define INT 1024
 /**
- * handl_buf - concatenates the buffer characters
- * @buf: buffer pointer
- * @c: charcter to concatenate
- * @ibuf: index of buffer pointer
- * Return: index of buffer pointer.
+ * Handl_buffer - print buffer characters.
+ * @buffer: pointer
+ * @C: arg charcter 
+ * @int_buffer: buffer pointer index.
+ *
+ * Return: buffer pointer index.
  */
-unsigned int handl_buf(char *buf, char c, unsigned int ibuf)
+unsigned int Handl_buffer(char *buffer, char C, unsigned int int_buffer)
 {
-	if (ibuf == 1024)
+	if (int_buffer == INT)
 	{
-		print_buf(buf, ibuf);
-		ibuf = 0;
+		print_buffer(buffer, int_buffer);
+		int_buffer = NULL;
 	}
-	buf[ibuf] = c;
-	ibuf++;
-	return (ibuf);
+	buffer[int_buffer] = C;
+	int_buffer++;
+	return (int_buffer);
 }
