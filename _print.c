@@ -20,33 +20,33 @@ int _printf(const char *format, ...)
     {
         if (*format == '%')
         {
-            format++; // Move past the '%'
+            format++; /* Move past the '%'*/
 
-            // Handle the conversion specifier
+            /* Handle the conversion specifier*/
             switch (*format)
             {
             case 'c':
             {
-                // Print a character
+                /*Print a character*/
                 char c = (char)va_arg(args, int);
                 printed_chars += _putchar(c);
                 break;
             }
             case 's':
             {
-                // Print a string
+                /* Print a string*/
                 char *str = va_arg(args, char *);
                 printed_chars += _puts(str);
                 break;
             }
             case '%':
             {
-                // Print a percent sign
+                /* Print a percent sign*/
                 printed_chars += _putchar('%');
                 break;
             }
             default:
-                // Invalid conversion specifier, ignore and continue
+                /* Invalid conversion specifier, ignore and continue*/
                 printed_chars += _putchar('%');
                 printed_chars += _putchar(*format);
                 break;
@@ -54,7 +54,7 @@ int _printf(const char *format, ...)
         }
         else
         {
-            // Regular character, print as-is
+            /* Regular character, print as-is*/
             printed_chars += _putchar(*format);
         }
 
@@ -66,6 +66,7 @@ int _printf(const char *format, ...)
     return printed_chars;
 }
 /** _putchar - Prints a character to the standard output.
+ * write - function
  * @c: The character to be printed.
  *
  * Reutrn:
