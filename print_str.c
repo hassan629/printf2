@@ -23,9 +23,12 @@ int print_string_0(va_list arguments, char *buffer, unsigned int int_buffer)
 		return (6);
 		}
 	}
-	for (t = 0; string[t]; t++)
+	t = 0;
+
+	while (string[t])
 	{
 		int_buffer = Handl_buffer(buffer, string[i], int_buffer);
+		t++;
 	return (t);
 	}
 }
