@@ -1,63 +1,61 @@
 #include "main.h"
+#include <stdio.h>
 #include <stdarg.h>
-#include <unistd.h>
 
-/**
- * _printf - Produces output according to a format.
- * @format: A character string containing zero or more directives.
- *
- * Return: The number of characters printed (excluding the null byte).
- */
 int _printf(const char *format, ...)
 {
     va_list args;
-    int count = 0;
-    char ch;
-    char *str;
-
     va_start(args, format);
 
-    while (*format)
+    int printed_chars = 0;
+
+    while (*format != '\0')
     {
         if (*format == '%')
         {
-            format++;
+            format++;  // Move past the '%'
+
+            // Handle the conversion specifier
             switch (*format)
             {
                 case 'c':
-                    ch = va_arg(args, int);
-                    write(1, &ch, 1);
-                    count++;
+                {
+                    // Print a character
+                    int c = va_arg(args, int);
+                    _putchar(c);
+                    printed_chars++;
                     break;
+                }
                 case 's':
-                    str = va_arg(args, char *);
-                    while (*str)
-                    {
-                        write(1, str, 1);
-                        str++;
-                        count++;
-                    }
+                {
+                    // Print a string
+                    char *str = va_arg(args, char *);
+                    fputs(str, stdout);
+                    printed_chars += strlen(str);
                     break;
+                }
                 case '%':
-                    write(1, "%", 1);
-                    count++;
+                {
+                    // Print a percent sign
+                    _putchar('%');
+                    printed_chars++;
                     break;
+                }
                 default:
-                    write(1, &format[-1], 1);
-                    write(1, format, 1);
-                    count += 2;
+                    // Invalid conversion specifier, ignore and continue
                     break;
             }
         }
         else
         {
-            write(1, format, 1);
-            count++;
+            _putchar(*format);
+            printed_chars++;
         }
 
         format++;
     }
 
     va_end(args);
-    return count;
+
+    return printed_chars;
 }
