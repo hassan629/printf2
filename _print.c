@@ -1,63 +1,56 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdarg.h>
-/**
- * _printf - function like printf
- * @format: arg
- *
- * Return: printed_char
- **/
-size_t strlen(const char* str);
-void fputs(const char* str);
+
+int _putchar(char c);
+int _puts(const char *str);
 
 int _printf(const char *format, ...)
 {
     va_list args;
-    va_start(args, format);
-
     int printed_chars = 0;
+
+    va_start(args, format);
 
     while (*format != '\0')
     {
         if (*format == '%')
         {
-            format++;  // Move past the '%'
+            format++; // Move past the '%'
 
             // Handle the conversion specifier
             switch (*format)
             {
-                case 'c':
-                {
-                    // Print a character
-                    int c = va_arg(args, int);
-                    _putchar(c);
-                    printed_chars++;
-                    break;
-                }
-                case 's':
-                {
-                    // Print a string
-                    char *str = va_arg(args, char *);
-                    fputs(str, stdout);
-                    printed_chars += strlen(str);
-                    break;
-                }
-                case '%':
-                {
-                    // Print a percent sign
-                    _putchar('%');
-                    printed_chars++;
-                    break;
-                }
-                default:
-                    // Invalid conversion specifier, ignore and continue
-                    break;
+            case 'c':
+            {
+                // Print a character
+                char c = (char)va_arg(args, int);
+                printed_chars += _putchar(c);
+                break;
+            }
+            case 's':
+            {
+                // Print a string
+                char *str = va_arg(args, char *);
+                printed_chars += _puts(str);
+                break;
+            }
+            case '%':
+            {
+                // Print a percent sign
+                printed_chars += _putchar('%');
+                break;
+            }
+            default:
+                // Invalid conversion specifier, ignore and continue
+                printed_chars += _putchar('%');
+                printed_chars += _putchar(*format);
+                break;
             }
         }
         else
         {
-            _putchar(*format);
-            printed_chars++;
+            // Regular character, print as-is
+            printed_chars += _putchar(*format);
         }
 
         format++;
@@ -68,36 +61,22 @@ int _printf(const char *format, ...)
     return printed_chars;
 }
 
-/**
- * stlen_l - cont long of string
- * @str: arg
- *
- * Return: longth
- **/
-
-size_t strlen(const char* str)
+int _putchar(char c)
 {
-    size_t length = 0;
-
-    while (str[length] != '\0')
-    {
-        length++;
-    }
-
-    return length;
+	write(1, &c, 1); /**Write the character to the standard output (file descriptor 1)**/
+	return 1;
 }
-/**
- * fputs - print strin
- * @str: arg
- *
- * Return: nothing
-**/
 
-void fputs(const char* str)
+int _puts(const char *str)
 {
+	int printed_chars = 0;
+
     while (*str != '\0')
     {
         _putchar(*str);
+        printed_chars++;
         str++;
     }
+
+    return printed_chars;
 }
