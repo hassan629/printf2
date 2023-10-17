@@ -1,7 +1,6 @@
 #include "main.h"
-
-int main()
+int main(void)
 {
-    _printf("Hello, %s!\n", "world");
-    return 0;
+	_printf("Hello, %s!\n", "world");
+	return (0);
 }
