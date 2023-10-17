@@ -1,42 +1,38 @@
 #include "main.h"
 
 /**
- * print_int - prints an integer
- * @arguments: input string
- * @buf: buffer pointer
- * @ibuf: index for buffer pointer
+ * print_intger_0 - print integer
+ * @arguments: arg string
+ * @buffer: pointer
+ * @int_buffer: buffer pointer index
+ *
  * Return: number of chars printed.
  */
-int print_int(va_list arguments, char *buf, unsigned int ibuf)
+int print_intger_0(va_list arguments, char *buffer, unsigned int int_buffer)
 {
-	int int_input;
-	unsigned int int_in, int_temp, i, div, isneg;
+	unsigned int intger_in, intger_temp, t, Div = 1, t_sneg = 0;
+	int intger_input;
 
-	int_input = va_arg(arguments, int);
-	isneg = 0;
-	if (int_input < 0)
+	intger_input = va_arg(arguments, int);
+	if (intger_input < 0)
 	{
-		int_in = int_input * -1;
-		ibuf = handl_buf(buf, '-', ibuf);
-		isneg = 1;
+		intger_in = intger_input * -1;
+		int_buffer = Handl_buffer(buffer, '-', int_buffer);
+		t_sneg = 1;
 	}
 	else
+		intger_in = intger_input;
+
+	intger_temp = intger_in;
+
+	while (intger_temp > 9)
 	{
-		int_in = int_input;
+		Div *= 10;
+		intgre_temp /= 10;
 	}
 
-	int_temp = int_in;
-	div = 1;
+	for (t = 0; Div > 0; Div /= 10, t++)
+		int_buffer = Handl_buffer(buffer, ((intger_in / Div) % 10) + '0', int_buffer);
 
-	while (int_temp > 9)
-	{
-		div *= 10;
-		int_temp /= 10;
-	}
-
-	for (i = 0; div > 0; div /= 10, i++)
-	{
-		ibuf = handl_buf(buf, ((int_in / div) % 10) + '0', ibuf);
-	}
-	return (i + isneg);
+	return (t + t_sneg);
 }

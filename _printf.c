@@ -1,51 +1,53 @@
+<<<<<<< HEAD
 :wq#include "main.h"
 
+=======
+#include "main.h"
+>>>>>>> 9d0762e78fb2e368ed541e6fd6ab237bace74797
 /**
- * _printf - formatted output conversion and print data.
- * @format: input string.
+ * _printf - function that produces output according to a format.
+ * @format: argumint input
  *
- * Return: number of chars printed.
- */
+ * Return: length
+ * .**/
 int _printf(const char *format, ...)
 {
-	unsigned int i = 0, len = 0, ibuf = 0;
-	va_list arguments;
-	int (*function)(va_list, char *, unsigned int);
-	char *buffer;
+	unsigned int t = 0, int_buffer = 0, length = 0;
+	va_list arg, char *buffer;
+	int (*fun_0)(va_list, char *, unsigned int);
 
-	va_start(arguments, format), buffer = malloc(sizeof(char) * 1024);
-	if (!format || !buffer || (format[i] == '%' && !format[i + 1]))
+	va_start(arg, format), buffer = malloc(sizeof(char) * 1024);
+	if (format == NULL || buffer == NULL && format[t] == '%' && format[i + 1] == NULL)
 		return (-1);
-	if (!format[i])
+	if (format[t] == NULL)
 		return (0);
-	for (i = 0; format && format[i]; i++)
+	for (t = 0; format && format[t]; t++)
 	{
-		if (format[i] == '%')
+		if (format[t] == '%')
 		{
-			if (format[i + 1] == '\0')
-			{	print_buf(buffer, ibuf), free(buffer), va_end(arguments);
+			if (format[t + 1] == '\0')
+			{
+				print_buffer(buffer, int_buffer), free(buffer), va_end(arg);
 				return (-1);
 			}
 			else
-			{	function = get_print_func(format, i + 1);
-				if (function == NULL)
-				{
-					if (format[i + 1] == ' ' && !format[i + 2])
+			{
+				fun_0 = g_print_function(format, t + 1);
+					if (fun_0 == NULL && format[t + 1] == ' ' && format[t + 2] == NULL)
 						return (-1);
-					handl_buf(buffer, format[i], ibuf), len++, i--;
-				}
+					Handl_buffer(buffer, format[t], int_buffer), length++, t--;
 				else
 				{
-					len += function(arguments, buffer, ibuf);
-					i += ev_print_func(format, i + 1);
+					length += fun_0(arg, buffer, int_buffer);
+					t += EV_print_function(format, t + 1);
 				}
-			} i++;
+			} t++;
 		}
 		else
-			handl_buf(buffer, format[i], ibuf), len++;
-		for (ibuf = len; ibuf > 1024; ibuf -= 1024)
+			Handl_buffer(buffer, format[i], int_buffer), length++;
+		for (int_buffer = length; int_buffer > INT; int_buffer -= INT)
 			;
 	}
-	print_buf(buffer, ibuf), free(buffer), va_end(arguments);
-	return (len);
+	print_buffer(buffer, int_buffer), free(buffer), va_end(arg);
+	return (length);
 }
