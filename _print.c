@@ -1,6 +1,14 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdarg.h>
+/**
+ * _printf - function like printf
+ * @format: arg
+ *
+ * Return: printed_char
+ **/
+size_t strlen(const char* str);
+void fputs(const char* str);
 
 int _printf(const char *format, ...)
 {
@@ -58,4 +66,38 @@ int _printf(const char *format, ...)
     va_end(args);
 
     return printed_chars;
+}
+
+/**
+ * stlen_l - cont long of string
+ * @str: arg
+ *
+ * Return: longth
+ **/
+
+size_t strlen(const char* str)
+{
+    size_t length = 0;
+
+    while (str[length] != '\0')
+    {
+        length++;
+    }
+
+    return length;
+}
+/**
+ * fputs - print strin
+ * @str: arg
+ *
+ * Return: nothing
+**/
+
+void fputs(const char* str)
+{
+    while (*str != '\0')
+    {
+        _putchar(*str);
+        str++;
+    }
 }
