@@ -4,7 +4,7 @@
  * print_intger_0 - print integer
  * @arguments: arg string
  * @buffer: pointer
- * @int_buffre: buffer pointer index
+ * @int_buffer: buffer pointer index
  *
  * Return: number of chars printed.
  */

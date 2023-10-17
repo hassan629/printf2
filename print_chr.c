@@ -2,13 +2,13 @@
 #include <stdio.h>
 /**
  * print_char_0 - print char
- * @arguments: arguments 
+ * @arguments: arguments
  * @buffer: pointer
  * @int_buffer: buffer pointer index
  *
  * Return: 1.
  */
-int print_char_0(va_list arguments, char *buffer, unsigned int int_buffre)
+int print_char_0(va_list arguments, char *buffer, unsigned int int_buffer)
 {
 	char C;
 

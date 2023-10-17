@@ -3,7 +3,7 @@
 /**
  * Handl_buffer - print buffer characters.
  * @buffer: pointer
- * @C: arg charcter 
+ * @C: arg charcter
  * @int_buffer: buffer pointer index.
  *
  * Return: buffer pointer index.
